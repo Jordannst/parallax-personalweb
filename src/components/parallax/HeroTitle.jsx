@@ -3,13 +3,14 @@ import { motion } from "framer-motion";
 export default function HeroTitle({ name = "JORDAN", lastName = "SUTARTO", role = "Creative Developer & UI Specialist" }) {
   
   // Animation variants for staggered reveal
+  // Delay of 2.8s to wait for preloader (2s counter + 0.8s exit animation)
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.3,
+        delayChildren: 2.8, // Wait for preloader to finish
       },
     },
   };
@@ -51,22 +52,11 @@ export default function HeroTitle({ name = "JORDAN", lastName = "SUTARTO", role 
       animate="visible"
       className="flex flex-col items-center justify-center text-center"
     >
-      {/* Available Badge */}
-      <motion.div 
-        variants={fadeUpVariants}
-        className="mb-8"
-      >
-        <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm">
-          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
-          <span className="text-sm text-white/60 tracking-wide uppercase">Available for work</span>
-        </span>
-      </motion.div>
-
       {/* Main Title - First Name */}
       <div className="overflow-hidden">
         <motion.h1 
           variants={lineVariants}
-          className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-black leading-[0.85] tracking-tighter text-white"
+          className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-display font-black leading-[0.85] tracking-tighter text-white"
         >
           {name}
         </motion.h1>
@@ -76,7 +66,7 @@ export default function HeroTitle({ name = "JORDAN", lastName = "SUTARTO", role 
       <div className="overflow-hidden">
         <motion.h1 
           variants={lineVariants}
-          className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-black leading-[0.85] tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-white/60"
+          className="text-[12vw] md:text-[10vw] lg:text-[8vw] font-display font-black leading-[0.85] tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-white via-white/80 to-white/60"
         >
           {lastName}
         </motion.h1>

@@ -15,9 +15,9 @@ const techStack = [
 ];
 ---
 
-<section class="relative py-32 md:py-48 bg-[#F3F2ED] text-[#1a1a1a] overflow-hidden min-h-screen flex items-center rounded-t-[3rem]">
+<section class="techstack-arch relative pt-40 pb-32 md:pt-48 md:pb-48 bg-[#F3F2ED] text-[#1a1a1a] overflow-hidden min-h-screen flex items-center">
   
-  <div class="w-full">
+  <div class="w-full relative z-10">
     <!-- Section Label Top -->
     <div class="container mx-auto px-6 mb-16 text-center">
       <span class="text-xs font-medium text-[#1a1a1a]/40 uppercase tracking-[0.3em]">
@@ -56,3 +56,17 @@ const techStack = [
   </div>
 
 </section>
+
+<style>
+  .techstack-arch {
+    border-top-left-radius: 50% 80px;
+    border-top-right-radius: 50% 80px;
+  }
+  
+  @media (min-width: 768px) {
+    .techstack-arch {
+      border-top-left-radius: 50% 120px;
+      border-top-right-radius: 50% 120px;
+    }
+  }
+</style>
