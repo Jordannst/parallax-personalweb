@@ -1,12 +1,15 @@
 ---
+import Navbar from '../components/ui/Navbar.astro';
+import CustomCursor from '../components/ui/CustomCursor.jsx';
+
 interface Props {
   title?: string;
   description?: string;
 }
 
 const { 
-  title = "Personal Portfolio", 
-  description = "A high-performance personal portfolio with stunning parallax effects" 
+  title = "Jordan | Creative Developer", 
+  description = "Creative Developer & UI Specialist crafting immersive digital experiences" 
 } = Astro.props;
 ---
 
@@ -18,9 +21,19 @@ const {
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
-  <body class="bg-slate-950 text-white antialiased">
+  <body class="bg-[#050505] text-white antialiased cursor-none">
+    <!-- Navigation -->
+    <Navbar />
+    
+    <!-- Custom Cursor -->
+    <CustomCursor client:load />
+    
+    <!-- Page Content -->
     <slot />
   </body>
 </html>
@@ -28,8 +41,13 @@ const {
 <style is:global>
   @import "../styles/global.css";
   
+  * {
+    font-family: 'Inter', sans-serif;
+    cursor: none;
+  }
+  
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto; /* Lenis handles smooth scroll */
   }
   
   html, body {
@@ -37,4 +55,69 @@ const {
     width: 100%;
     min-height: 100%;
   }
+
+  /* Lenis smooth scroll overrides */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  /* Subtle noise/grain overlay */
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Restore cursor on touch devices */
+  @media (hover: none) {
+    *, body {
+      cursor: auto !important;
+    }
+  }
 </style>
+
+<script>
+  import Lenis from 'lenis';
+
+  // Initialize Lenis smooth scroll
+  const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    orientation: 'vertical',
+    gestureOrientation: 'vertical',
+    smoothWheel: true,
+    wheelMultiplier: 1,
+    touchMultiplier: 2,
+  });
+
+  // RAF loop
+  function raf(time: number) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+
+  requestAnimationFrame(raf);
+</script>

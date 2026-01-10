@@ -1,0 +1,62 @@
+---
+import HeroTitle from "../parallax/HeroTitle.jsx";
+
+interface Props {
+  name?: string;
+  lastName?: string;
+  role?: string;
+}
+
+const {
+  name = "JORDAN",
+  lastName = "SUTARTO",
+  role = "Creative Developer & UI Specialist"
+} = Astro.props;
+---
+
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#050505]">
+  
+  <!-- Subtle Gradient Mesh Background - Adjusted for Deep Black -->
+  <div class="absolute inset-0 pointer-events-none">
+    <!-- Top gradient - More subtle -->
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neutral-800/20 rounded-full blur-[180px]"></div>
+    <!-- Bottom gradient -->
+    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-neutral-700/15 rounded-full blur-[150px]"></div>
+    <!-- Center glow - Very subtle -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-neutral-800/10 rounded-full blur-[120px]"></div>
+  </div>
+
+  <!-- Vertical Lines Decoration - More subtle -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.02]">
+    <div class="absolute left-[10%] top-0 bottom-0 w-[1px] bg-white"></div>
+    <div class="absolute left-[30%] top-0 bottom-0 w-[1px] bg-white"></div>
+    <div class="absolute left-[50%] top-0 bottom-0 w-[1px] bg-white"></div>
+    <div class="absolute left-[70%] top-0 bottom-0 w-[1px] bg-white"></div>
+    <div class="absolute left-[90%] top-0 bottom-0 w-[1px] bg-white"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="relative z-10 px-6">
+    <HeroTitle 
+      client:load 
+      name={name} 
+      lastName={lastName} 
+      role={role} 
+    />
+  </div>
+
+  <!-- Corner Text Elements -->
+  <div class="absolute top-8 left-8 text-[10px] text-white/20 tracking-[0.3em] uppercase">
+    Portfolio 2024
+  </div>
+  <div class="absolute top-8 right-8 text-[10px] text-white/20 tracking-[0.3em] uppercase">
+    Based in Indonesia
+  </div>
+  <div class="absolute bottom-8 left-8 text-[10px] text-white/20 tracking-[0.3em] uppercase hidden md:block">
+    Crafting Digital Experiences
+  </div>
+  <div class="absolute bottom-8 right-8 text-[10px] text-white/20 tracking-[0.3em] uppercase hidden md:block">
+    EST. 2023
+  </div>
+
+</section>
