@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 
-export default function HeroTitle({ name = "JORDAN", lastName = "SUTARTO", role = "Creative Developer & UI Specialist" }) {
+export default function HeroTitle({ name = "JORDAN", lastName = "SUTARTO", role = "Web Developer & UI Enthusiast" }) {
   const [isHovered, setIsHovered] = useState(false);
 
   // Use window scroll directly (works better with sticky container)

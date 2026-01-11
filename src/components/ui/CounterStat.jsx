@@ -1,23 +1,18 @@
 import { useRef, useEffect, useState } from "react";
-import { motion, useInView, useMotionValue, useSpring, animate } from "framer-motion";
+import { motion, useInView, animate } from "framer-motion";
 
 export default function CounterStat({ value, label, suffix = "" }) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [hasAnimated, setHasAnimated] = useState(false);
-  
-  const count = useMotionValue(0);
-  const springCount = useSpring(count, { stiffness: 100, damping: 30 });
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
   const [displayValue, setDisplayValue] = useState(0);
 
+  // Parse the numeric value
+  const numericValue = parseInt(String(value).replace(/\D/g, '')) || 0;
+  const isSpecial = value === "∞";
+
   useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true);
-      
-      // Parse the numeric value
-      const numericValue = parseInt(value.replace(/\D/g, '')) || 0;
-      
-      const controls = animate(count, numericValue, {
+    if (isInView && !isSpecial) {
+      const controls = animate(0, numericValue, {
         duration: 2,
         ease: "easeOut",
         onUpdate: (latest) => {
@@ -27,10 +22,7 @@ export default function CounterStat({ value, label, suffix = "" }) {
 
       return () => controls.stop();
     }
-  }, [isInView, hasAnimated, value, count]);
-
-  // Handle special values like "∞"
-  const isSpecial = value === "∞";
+  }, [isInView, numericValue, isSpecial]);
   
   return (
     <motion.div
