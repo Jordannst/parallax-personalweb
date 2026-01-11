@@ -2,6 +2,7 @@
 import Navbar from '../components/ui/Navbar.astro';
 import CustomCursor from '../components/ui/CustomCursor.jsx';
 import ScrollProgress from '../components/ui/ScrollProgress.jsx';
+import BackToTop from '../components/ui/BackToTop.jsx';
 
 interface Props {
   title?: string;
@@ -41,6 +42,9 @@ const {
     
     <!-- Page Content -->
     <slot />
+
+    <!-- Back to Top Button -->
+    <BackToTop client:load />
 
     <!-- Cinematic Noise/Grain Overlay -->
     <div class="noise-overlay" aria-hidden="true"></div>

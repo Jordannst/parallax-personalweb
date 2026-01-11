@@ -72,6 +72,9 @@ export default function HorizontalScrollGallery({ projects }) {
               scrollProgress={scrollYProgress}
             />
           ))}
+          
+          {/* Coming Soon Card */}
+          <ComingSoonCard />
         </motion.div>
       </div>
     </section>
@@ -220,6 +223,73 @@ function ProjectCard({ project, index, isHovered, onHover, onLeave, scrollProgre
         animate={{ opacity: isHovered ? 1 : 0 }}
         className="absolute inset-0 rounded-2xl border border-white/20 pointer-events-none"
       />
+    </motion.div>
+  );
+}
+
+function ComingSoonCard() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      className="relative flex-shrink-0 w-[60vw] md:w-[40vw] lg:w-[30vw] h-[70vh] md:h-[75vh] rounded-2xl overflow-hidden flex items-center justify-center"
+    >
+      {/* Gradient border */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-purple-500/20 via-transparent to-pink-500/20" />
+      <div className="absolute inset-[1px] rounded-2xl bg-[#0a0a0a]" />
+      
+      {/* Animated dots pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{ 
+          backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', 
+          backgroundSize: '20px 20px' 
+        }} />
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 text-center px-8">
+        {/* Animated plus icon */}
+        <motion.div
+          animate={{ rotate: [0, 90, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="w-16 h-16 mx-auto mb-8 rounded-full border border-white/10 flex items-center justify-center"
+        >
+          <span className="text-4xl text-white/20 font-light">+</span>
+        </motion.div>
+
+        {/* Title */}
+        <motion.h3
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-2xl md:text-4xl font-display font-bold text-white/80 mb-4"
+        >
+          More Coming
+          <br />
+          <span className="text-white/30">Soon</span>
+        </motion.h3>
+
+        {/* Subtitle */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-sm text-white/30 max-w-xs mx-auto"
+        >
+          Exciting projects are in the works. Stay tuned for updates.
+        </motion.p>
+
+        {/* Animated line */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="w-16 h-[1px] bg-gradient-to-r from-transparent via-white/30 to-transparent mx-auto mt-8"
+        />
+      </div>
     </motion.div>
   );
 }
