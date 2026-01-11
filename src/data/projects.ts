@@ -19,33 +19,33 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "project-1",
-    title: "E-Commerce Platform",
-    description: "A full-featured online store with cart functionality, payment integration, and admin dashboard.",
-    techStack: ["React", "Node.js", "MongoDB", "Stripe"],
-    imagePath: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=600&fit=crop",
-    githubUrl: "https://github.com/yourusername/ecommerce",
-    year: "2024",
+    id: "project-rag-chatbot",
+    title: "Contextual RAG Chat",
+    description: "Production-grade Retrieval-Augmented Generation system with hybrid semantic search (vector + full-text), AI-powered document analysis, and Data Analyst Agent that generates Python code from natural language queries for CSV/Excel analytics with chart visualization.",
+    techStack: ["Next.js", "Go", "PostgreSQL", "pgvector", "Google Gemini AI", "Python", "Docker"],
+    imagePath: "/rag-chatbot.png" , 
+    githubUrl: "https://github.com/Jordannst/contextual-rag-chat",
+    year: "2025",
     category: "Full Stack"
-  },
+},
   {
-    id: "project-2",
-    title: "Task Management App",
-    description: "A collaborative project management tool with real-time updates and team features.",
-    techStack: ["Vue.js", "Firebase", "Tailwind CSS"],
-    imagePath: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=600&fit=crop",
-    githubUrl: "https://github.com/yourusername/taskapp",
-    year: "2023",
-    category: "Web App"
-  },
-  {
-    id: "project-3",
-    title: "Portfolio Website",
-    description: "A stunning personal portfolio with parallax scrolling effects and smooth animations.",
-    techStack: ["Astro", "React", "Framer Motion", "Tailwind CSS"],
-    imagePath: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
-    githubUrl: "https://github.com/yourusername/portfolio",
-    year: "2023",
-    category: "Frontend"
-  }
+  id: "kassentix-pos",
+  title: "Kassentix POS",
+  description: "Cloud-based Point of Sale SaaS for Indonesian SMEs. Features AI analytics, real-time inventory sync, multi-outlet management & subscription tiers. Try FREE at kassentix.cloud!",
+  techStack: ["Next.js 15", "TypeScript", "Tailwind CSS", "Express.js", "Prisma", "Socket.io"],
+  imagePath: "/kassentix.png",
+  liveUrl: "https://kassentix.cloud",
+  year: "2025",
+  category: "SaaS Platform"
+},
+  // {
+  //   id: "project-3",
+  //   title: "Portfolio Website",
+  //   description: "A stunning personal portfolio with parallax scrolling effects and smooth animations.",
+  //   techStack: ["Astro", "React", "Framer Motion", "Tailwind CSS"],
+  //   imagePath: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+  //   githubUrl: "https://github.com/yourusername/portfolio",
+  //   year: "2023",
+  //   category: "Frontend"
+  // }
 ];
