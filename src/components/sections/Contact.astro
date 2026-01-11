@@ -1,5 +1,6 @@
 ---
 import MagneticButton from "../ui/MagneticButton.jsx";
+import SocialButtons from "../ui/SocialButtons.jsx";
 import FooterHeader from "../parallax/FooterHeader.jsx";
 
 // Get current year dynamically
@@ -29,6 +30,11 @@ const currentYear = new Date().getFullYear();
         >
           Get in Touch
         </MagneticButton>
+      </div>
+      
+      <!-- Social Buttons -->
+      <div class="mt-12">
+        <SocialButtons client:load />
       </div>
       
     </div>
