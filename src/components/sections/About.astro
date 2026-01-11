@@ -1,10 +1,23 @@
 ---
 import TextReveal from "../parallax/TextReveal.jsx";
+import CounterStat from "../ui/CounterStat.jsx";
 
 const aboutText = "I am a creative developer based in Indonesia, specializing in building scalable web applications. I combine technical precision with visual aesthetics to create immersive digital experiences that captivate users and drive results.";
+
+const stats = [
+  { value: "3", suffix: "+", label: "Years Experience" },
+  { value: "20", suffix: "+", label: "Projects Done" },
+  { value: "15", suffix: "+", label: "Happy Clients" },
+  { value: "∞", suffix: "", label: "Coffee Consumed" },
+];
 ---
 
-<section id="about" class="relative min-h-screen flex flex-col justify-center py-32 md:py-48 bg-[#F3F2ED] text-[#1a1a1a] rounded-t-[3rem]">
+<section id="about" class="relative min-h-screen flex flex-col justify-center py-32 md:py-48 bg-[#F3F2ED] text-[#1a1a1a] rounded-t-[3rem] overflow-hidden">
+  
+  <!-- Grid Pattern Overlay -->
+  <div class="absolute inset-0 opacity-[0.03] pointer-events-none">
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px); background-size: 24px 24px;"></div>
+  </div>
   
   <div class="container mx-auto px-6 md:px-12 relative z-10">
     
@@ -18,24 +31,16 @@ const aboutText = "I am a creative developer based in Indonesia, specializing in
     <!-- Text Reveal Component -->
     <TextReveal client:visible text={aboutText} theme="light" />
 
-    <!-- Stats -->
-    <div class="mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-      <div>
-        <span class="block text-4xl md:text-5xl font-display font-bold text-[#1a1a1a] mb-2">3+</span>
-        <span class="text-sm text-[#1a1a1a]/40 uppercase tracking-wider">Years Experience</span>
-      </div>
-      <div>
-        <span class="block text-4xl md:text-5xl font-display font-bold text-[#1a1a1a] mb-2">20+</span>
-        <span class="text-sm text-[#1a1a1a]/40 uppercase tracking-wider">Projects Done</span>
-      </div>
-      <div>
-        <span class="block text-4xl md:text-5xl font-display font-bold text-[#1a1a1a] mb-2">15+</span>
-        <span class="text-sm text-[#1a1a1a]/40 uppercase tracking-wider">Happy Clients</span>
-      </div>
-      <div>
-        <span class="block text-4xl md:text-5xl font-display font-bold text-[#1a1a1a] mb-2">∞</span>
-        <span class="text-sm text-[#1a1a1a]/40 uppercase tracking-wider">Coffee Consumed</span>
-      </div>
+    <!-- Stats with Counter Animation -->
+    <div class="mt-24 md:mt-32 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+      {stats.map((stat) => (
+        <CounterStat 
+          client:visible
+          value={stat.value}
+          suffix={stat.suffix}
+          label={stat.label}
+        />
+      ))}
     </div>
 
   </div>

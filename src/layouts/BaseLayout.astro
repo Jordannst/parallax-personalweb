@@ -1,6 +1,7 @@
 ---
 import Navbar from '../components/ui/Navbar.astro';
 import CustomCursor from '../components/ui/CustomCursor.jsx';
+import ScrollProgress from '../components/ui/ScrollProgress.jsx';
 
 interface Props {
   title?: string;
@@ -34,6 +35,9 @@ const {
     
     <!-- Custom Cursor -->
     <CustomCursor client:load />
+    
+    <!-- Scroll Progress Bar -->
+    <ScrollProgress client:load />
     
     <!-- Page Content -->
     <slot />
