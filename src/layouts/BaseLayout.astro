@@ -7,12 +7,16 @@ import BackToTop from '../components/ui/BackToTop.jsx';
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
 const { 
-  title = "Jordan | Creative Developer", 
-  description = "Creative Developer & UI Specialist crafting immersive digital experiences" 
+  title = "Jordan Sutarto | Creative Developer", 
+  description = "3rd Year CS Student passionate about building immersive web experiences. Explore my projects and tech stack.",
+  ogImage = "/og-image.png"
 } = Astro.props;
+
+const siteUrl = "https://jordan-dev-ten.vercel.app";
 ---
 
 <!doctype html>
@@ -23,6 +27,21 @@ const {
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${siteUrl}${ogImage}`} />
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={siteUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}${ogImage}`} />
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">

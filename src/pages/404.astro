@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 - Page Not Found | Jordan Sutarto">
+  <section class="min-h-screen flex items-center justify-center bg-[#050505] relative overflow-hidden">
+    
+    <!-- Ambient Glow Effects -->
+    <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-[120px] animate-pulse"></div>
+    <div class="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-[100px] animate-pulse delay-1000"></div>
+    
+    <!-- Content -->
+    <div class="relative z-10 text-center px-6">
+      
+      <!-- 404 Number -->
+      <h1 class="text-[120px] md:text-[200px] font-display font-black text-white/5 leading-none select-none">
+        404
+      </h1>
+      
+      <!-- Message -->
+      <div class="-mt-16 md:-mt-24">
+        <h2 class="text-3xl md:text-5xl font-display font-bold text-white mb-4">
+          Page Not Found
+        </h2>
+        <p class="text-base md:text-lg text-white/40 max-w-md mx-auto mb-10">
+          The page you're looking for doesn't exist or has been moved to another dimension.
+        </p>
+        
+        <!-- Back Home Button -->
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-white/90 transition-all hover:scale-105 group"
+        >
+          <svg class="w-5 h-5 rotate-180 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+          <span class="text-sm uppercase tracking-wider">Back to Home</span>
+        </a>
+      </div>
+      
+      <!-- Decorative Elements -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white/5 rounded-full pointer-events-none"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] border border-white/5 rounded-full pointer-events-none"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] border border-white/5 rounded-full pointer-events-none"></div>
+      
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .delay-1000 {
+    animation-delay: 1s;
+  }
+</style>

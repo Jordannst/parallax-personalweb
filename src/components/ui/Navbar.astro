@@ -1,4 +1,5 @@
 ---
+import MobileMenu from './MobileMenu.jsx';
 ---
 
 <nav class="fixed top-0 left-0 w-full z-[60] mix-blend-difference">
@@ -10,8 +11,8 @@
         JORDAN
       </a>
 
-      <!-- Menu Items -->
-      <ul class="flex items-center gap-6 md:gap-10">
+      <!-- Desktop Menu Items - Hidden on Mobile -->
+      <ul class="hidden md:flex items-center gap-6 md:gap-10">
         <li>
           <a 
             href="#projects" 
@@ -37,6 +38,9 @@
           </a>
         </li>
       </ul>
+
+      <!-- Mobile Menu - Visible on Mobile Only -->
+      <MobileMenu client:load />
 
     </div>
   </div>
