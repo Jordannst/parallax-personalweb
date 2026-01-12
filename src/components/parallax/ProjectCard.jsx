@@ -59,7 +59,7 @@ export default function ProjectCard({ title, description, techStack = [], imageS
               {techStack.map((tech, i) => (
                 <span 
                   key={i}
-                  className="px-3 py-1 text-xs font-medium bg-white/10 text-white/70 rounded-full backdrop-blur-sm"
+                  className="px-3 py-1 text-xs font-medium bg-white/15 text-white/70 rounded-full"
                 >
                   {tech}
                 </span>

@@ -5,9 +5,9 @@ export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
 
-  // Smooth spring physics for cursor movement
-  const cursorX = useSpring(0, { stiffness: 500, damping: 28 });
-  const cursorY = useSpring(0, { stiffness: 500, damping: 28 });
+  // Smooth spring physics for cursor movement - optimized for performance
+  const cursorX = useSpring(0, { stiffness: 300, damping: 25 });
+  const cursorY = useSpring(0, { stiffness: 300, damping: 25 });
 
   useEffect(() => {
     // Mouse move handler

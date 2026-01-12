@@ -10,11 +10,11 @@ export default function HorizontalScrollGallery({ projects }) {
     offset: ["start start", "end end"],
   });
 
-  // Smooth spring for horizontal movement
+  // Smooth spring for horizontal movement - optimized for performance
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
+    stiffness: 50,
+    damping: 20,
+    restDelta: 0.01,
   });
 
   // Calculate horizontal scroll based on number of projects
@@ -58,7 +58,7 @@ export default function HorizontalScrollGallery({ projects }) {
 
         {/* Horizontal Cards */}
         <motion.div 
-          style={{ x }}
+          style={{ x, willChange: "transform" }}
           className="flex items-center gap-8 pl-6 pr-[50vw] md:pl-12"
         >
           {projects.map((project, index) => (
@@ -86,14 +86,14 @@ function ProjectCard({ project, index, isHovered, onHover, onLeave, scrollProgre
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // 3D tilt effect
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [8, -8]), {
-    stiffness: 300,
-    damping: 30,
+  // 3D tilt effect - reduced intensity for better performance
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [5, -5]), {
+    stiffness: 150,
+    damping: 20,
   });
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-8, 8]), {
-    stiffness: 300,
-    damping: 30,
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-5, 5]), {
+    stiffness: 150,
+    damping: 20,
   });
 
   const handleMouseMove = (e) => {
@@ -125,19 +125,22 @@ function ProjectCard({ project, index, isHovered, onHover, onLeave, scrollProgre
         rotateY: isHovered ? rotateY : 0,
         transformStyle: "preserve-3d",
         perspective: 1000,
+        willChange: "transform",
       }}
       className="relative flex-shrink-0 w-[80vw] md:w-[60vw] lg:w-[50vw] h-[70vh] md:h-[75vh] rounded-2xl overflow-hidden cursor-pointer group"
     >
       {/* Image with zoom on hover */}
       <motion.div
-        style={{ y: imageY }}
-        animate={{ scale: isHovered ? 1.1 : 1 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{ y: imageY, willChange: "transform" }}
+        animate={{ scale: isHovered ? 1.05 : 1 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
         className="absolute inset-0 w-full h-[120%] -top-[10%]"
       >
         <img
           src={project.imagePath}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-top"
         />
       </motion.div>
@@ -173,7 +176,7 @@ function ProjectCard({ project, index, isHovered, onHover, onLeave, scrollProgre
           {project.techStack?.map((tech, i) => (
             <span 
               key={i}
-              className="px-3 py-1 text-xs font-medium bg-white/10 text-white/80 rounded-full backdrop-blur-sm"
+              className="px-3 py-1 text-xs font-medium bg-white/15 text-white/80 rounded-full"
             >
               {tech}
             </span>
