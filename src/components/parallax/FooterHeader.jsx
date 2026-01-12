@@ -1,6 +1,63 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
+// Split text into characters for animation
+const SplitText = ({ children, className, delay = 0 }) => {
+  const characters = children.split("");
+  
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.03,
+        delayChildren: delay,
+      },
+    },
+  };
+
+  const characterVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      rotateX: -90,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      rotateX: 0,
+      transition: {
+        type: "spring",
+        damping: 12,
+        stiffness: 100,
+      },
+    },
+  };
+
+  return (
+    <motion.span
+      className={className}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.5 }}
+      style={{ display: "inline-block" }}
+    >
+      {characters.map((char, index) => (
+        <motion.span
+          key={index}
+          variants={characterVariants}
+          style={{ 
+            display: "inline-block",
+            whiteSpace: char === " " ? "pre" : "normal",
+          }}
+        >
+          {char === " " ? "\u00A0" : char}
+        </motion.span>
+      ))}
+    </motion.span>
+  );
+};
+
 export default function FooterHeader() {
   const ref = useRef(null);
 
@@ -10,19 +67,22 @@ export default function FooterHeader() {
   });
 
   // Parallax movement as section scrolls into view
-  const y = useTransform(scrollYProgress, [0, 1], [100, -50]);
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [0, 1, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [80, -30]);
 
   return (
     <motion.div
       ref={ref}
-      style={{ y, opacity }}
+      style={{ y }}
       className="text-center"
     >
-      <h2 className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-display font-bold text-white leading-[0.9] tracking-tight">
-        LET'S WORK
+      <h2 className="text-4xl md:text-6xl lg:text-8xl xl:text-9xl font-display font-bold leading-[0.9] tracking-tight">
+        <SplitText className="text-white" delay={0}>
+          LET'S WORK
+        </SplitText>
         <br />
-        <span className="text-white/40">TOGETHER</span>
+        <SplitText className="text-white/40" delay={0.3}>
+          TOGETHER
+        </SplitText>
       </h2>
     </motion.div>
   );
