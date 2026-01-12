@@ -1,8 +1,18 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
 
 export default function HeroParallaxWrapper({ children }) {
   const containerRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Track scroll progress based on the container leaving the viewport
   const { scrollYProgress } = useScroll({
@@ -19,6 +29,33 @@ export default function HeroParallaxWrapper({ children }) {
   
   // Create blur filter template
   const blurFilter = useMotionTemplate`blur(${blur}px)`;
+
+  // On mobile, use fixed positioning for better curtain effect
+  if (isMobile) {
+    return (
+      <div 
+        ref={containerRef}
+        className="relative h-screen w-full overflow-hidden"
+      >
+        <motion.div
+          style={{
+            scale,
+            opacity,
+            filter: blurFilter,
+            borderRadius,
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '100vh',
+          }}
+          className="bg-[#050505] will-change-transform"
+        >
+          {children}
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div 
