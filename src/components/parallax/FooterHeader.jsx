@@ -18,17 +18,15 @@ const SplitText = ({ children, className, delay = 0 }) => {
   const characterVariants = {
     hidden: {
       opacity: 0,
-      y: 50,
-      rotateX: -90,
+      y: 40,
     },
     visible: {
       opacity: 1,
       y: 0,
-      rotateX: 0,
       transition: {
         type: "spring",
-        damping: 12,
-        stiffness: 100,
+        damping: 20,
+        stiffness: 80,
       },
     },
   };
@@ -49,6 +47,7 @@ const SplitText = ({ children, className, delay = 0 }) => {
           style={{ 
             display: "inline-block",
             whiteSpace: char === " " ? "pre" : "normal",
+            willChange: "transform, opacity",
           }}
         >
           {char === " " ? "\u00A0" : char}

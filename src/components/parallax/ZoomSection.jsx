@@ -1,14 +1,14 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-// Floating particles data - larger and more visible
-const particles = Array.from({ length: 25 }, (_, i) => ({
+// Floating particles - optimized count for performance
+const particles = Array.from({ length: 12 }, (_, i) => ({
   id: i,
   x: Math.random() * 100,
   y: Math.random() * 100,
-  size: Math.random() * 4 + 2,
-  duration: Math.random() * 10 + 15,
-  delay: Math.random() * 5,
+  size: Math.random() * 3 + 2,
+  duration: Math.random() * 8 + 12,
+  delay: Math.random() * 4,
 }));
 
 export default function ZoomSection() {
@@ -79,10 +79,11 @@ export default function ZoomSection() {
                   top: `${particle.y}%`,
                   width: particle.size,
                   height: particle.size,
+                  willChange: "transform, opacity",
                 }}
                 animate={{
-                  y: [0, -40, 0],
-                  opacity: [0.4, 0.8, 0.4],
+                  y: [0, -30, 0],
+                  opacity: [0.3, 0.7, 0.3],
                 }}
                 transition={{
                   duration: particle.duration,

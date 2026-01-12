@@ -1,5 +1,7 @@
 ---
 import HeroTitle from "../parallax/HeroTitle.jsx";
+import HeroParallaxWrapper from "../parallax/HeroParallaxWrapper.jsx";
+import Hero3DObject from "../parallax/Hero3DObject.jsx";
 
 interface Props {
   name?: string;
@@ -14,47 +16,47 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#050505]">
-  
-  <!-- Subtle Gradient Mesh Background - Adjusted for Deep Black -->
-  <div class="absolute inset-0 pointer-events-none">
-    <!-- Top gradient - More subtle -->
-    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neutral-800/20 rounded-full blur-[180px]"></div>
-    <!-- Bottom gradient -->
-    <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-neutral-700/15 rounded-full blur-[150px]"></div>
-    <!-- Center glow - Very subtle -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-neutral-800/10 rounded-full blur-[120px]"></div>
-  </div>
+<HeroParallaxWrapper client:load>
+  <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+    
+    <!-- Subtle Gradient Mesh Background - Adjusted for Deep Black -->
+    <div class="absolute inset-0 pointer-events-none z-0">
+      <!-- Top gradient - More subtle -->
+      <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neutral-800/20 rounded-full blur-[180px]"></div>
+      <!-- Bottom gradient -->
+      <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-neutral-700/15 rounded-full blur-[150px]"></div>
+      <!-- Center glow - Very subtle -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-neutral-800/10 rounded-full blur-[120px]"></div>
+    </div>
 
-  <!-- Vertical Lines Decoration - More subtle -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.02]">
-    <div class="absolute left-[10%] top-0 bottom-0 w-[1px] bg-white"></div>
-    <div class="absolute left-[30%] top-0 bottom-0 w-[1px] bg-white"></div>
-    <div class="absolute left-[50%] top-0 bottom-0 w-[1px] bg-white"></div>
-    <div class="absolute left-[70%] top-0 bottom-0 w-[1px] bg-white"></div>
-    <div class="absolute left-[90%] top-0 bottom-0 w-[1px] bg-white"></div>
-  </div>
+    <!-- 3D Object Layer (z-5) - Behind text, above background -->
+    <div class="absolute inset-0 z-5 flex items-center justify-center pointer-events-none opacity-70">
+      <Hero3DObject client:load />
+    </div>
 
-  <!-- Main Content -->
-  <div class="relative z-10 px-6 flex flex-col items-center">
-    <HeroTitle 
-      client:load 
-      name={name} 
-      lastName={lastName} 
-      role={role} 
-    />
-  </div>
+    <!-- Vertical Lines Decoration - More subtle -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.02] z-0">
+      <div class="absolute left-[10%] top-0 bottom-0 w-[1px] bg-white"></div>
+      <div class="absolute left-[30%] top-0 bottom-0 w-[1px] bg-white"></div>
+      <div class="absolute left-[50%] top-0 bottom-0 w-[1px] bg-white"></div>
+      <div class="absolute left-[70%] top-0 bottom-0 w-[1px] bg-white"></div>
+      <div class="absolute left-[90%] top-0 bottom-0 w-[1px] bg-white"></div>
+    </div>
 
-  <!-- Corner Text Elements -->
-  <div class="absolute top-8 left-8 text-[10px] text-white/20 tracking-[0.3em] uppercase">
-    Portfolio 2024
-  </div>
+    <!-- Main Content (z-10) - Typography on top -->
+    <div class="relative z-10 px-6 flex flex-col items-center">
+      <HeroTitle 
+        client:load 
+        name={name} 
+        lastName={lastName} 
+        role={role} 
+      />
+    </div>
 
-  <div class="absolute bottom-8 left-8 text-[10px] text-white/20 tracking-[0.3em] uppercase hidden md:block">
-    Crafting Digital Experiences
-  </div>
-  <div class="absolute bottom-8 right-8 text-[10px] text-white/20 tracking-[0.3em] uppercase hidden md:block">
-    EST. 2023
-  </div>
+    <!-- Corner Text Element -->
+    <div class="absolute bottom-8 left-8 text-[10px] text-white/20 tracking-[0.3em] uppercase hidden md:block z-10">
+      Crafting Digital Experiences
+    </div>
 
-</section>
+  </section>
+</HeroParallaxWrapper>

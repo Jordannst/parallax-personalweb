@@ -69,45 +69,50 @@ export default function HeroTitle({ name = "JORDAN", lastName = "SUTARTO", role 
         opacity 
       }}
       className="flex flex-col items-center justify-center text-center"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Main Title - First Name */}
-      <div className="overflow-hidden">
-        <motion.h1 
-          variants={lineVariants}
-          style={{ y: firstNameY }}
-          className={`
-            text-[12vw] md:text-[10vw] lg:text-[8vw] 
-            font-display font-black leading-[0.85] tracking-tighter
-            transition-all duration-500 ease-out
-            ${isHovered 
-              ? "text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.6)]" 
-              : "text-white"
-            }
-          `}
-        >
-          {name}
-        </motion.h1>
-      </div>
+      {/* Names wrapper with hover detection - padding accounts for parallax movement */}
+      <div 
+        className="relative pt-16 pb-4 -mt-16"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {/* Main Title - First Name */}
+        <div className="overflow-visible">
+          <motion.h1 
+            variants={lineVariants}
+            style={{ y: firstNameY }}
+            className={`
+              text-[12vw] md:text-[10vw] lg:text-[8vw] 
+              font-display font-black leading-[0.85] tracking-tighter
+              transition-all duration-500 ease-out
+              ${isHovered 
+                ? "text-transparent [-webkit-text-stroke:1.5px_rgba(243,242,237,0.6)]" 
+                : "text-[#F3F2ED]"
+              }
+            `}
+          >
+            {name}
+          </motion.h1>
+        </div>
 
-      {/* Main Title - Last Name (Outline by default) */}
-      <div className="overflow-hidden">
-        <motion.h1 
-          variants={lineVariants}
-          style={{ y: lastNameY }}
-          className={`
-            text-[12vw] md:text-[10vw] lg:text-[8vw] 
-            font-display font-black leading-[0.85] tracking-tighter
-            transition-all duration-500 ease-out
-            ${isHovered 
-              ? "text-white" 
-              : "text-transparent [-webkit-text-stroke:1.5px_rgba(255,255,255,0.5)]"
-            }
-          `}
-        >
-          {lastName}
-        </motion.h1>
+        {/* Main Title - Last Name (Outline by default) */}
+        <div className="overflow-hidden">
+          <motion.h1 
+            variants={lineVariants}
+            style={{ y: lastNameY }}
+            className={`
+              text-[12vw] md:text-[10vw] lg:text-[8vw] 
+              font-display font-black leading-[0.85] tracking-tighter
+              transition-all duration-500 ease-out
+              ${isHovered 
+                ? "text-[#F3F2ED]" 
+                : "text-transparent [-webkit-text-stroke:1.5px_rgba(243,242,237,0.5)]"
+              }
+            `}
+          >
+            {lastName}
+          </motion.h1>
+        </div>
       </div>
 
       {/* Role Description */}

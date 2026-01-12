@@ -41,7 +41,7 @@ function SocialButton({ social }) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springConfig = { stiffness: 150, damping: 15 };
+  const springConfig = { stiffness: 100, damping: 20 };
   const xSpring = useSpring(x, springConfig);
   const ySpring = useSpring(y, springConfig);
 
@@ -52,8 +52,8 @@ function SocialButton({ social }) {
     const centerY = rect.top + rect.height / 2;
     const deltaX = e.clientX - centerX;
     const deltaY = e.clientY - centerY;
-    x.set(deltaX * 0.3);
-    y.set(deltaY * 0.3);
+    x.set(deltaX * 0.25);
+    y.set(deltaY * 0.25);
   };
 
   const handleMouseLeave = () => {
@@ -84,7 +84,7 @@ function SocialButton({ social }) {
         className={`absolute inset-0 bg-gradient-to-r ${social.gradient} rounded-full blur-xl`}
       />
       
-      {/* Button container */}
+      {/* Button container - removed backdrop-blur for performance */}
       <motion.div
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
@@ -92,7 +92,7 @@ function SocialButton({ social }) {
           relative w-14 h-14 rounded-full 
           flex items-center justify-center
           border border-white/20 
-          bg-white/5 backdrop-blur-sm
+          bg-white/5
           transition-all duration-300
           ${isHovered ? "border-white/40 bg-white/10" : ""}
         `}

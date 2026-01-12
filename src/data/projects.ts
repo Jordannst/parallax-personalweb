@@ -23,7 +23,7 @@ export const projects: Project[] = [
     title: "Contextual RAG Chat",
     description: "Production-grade Retrieval-Augmented Generation system with hybrid semantic search (vector + full-text), AI-powered document analysis, and Data Analyst Agent that generates Python code from natural language queries for CSV/Excel analytics with chart visualization.",
     techStack: ["Next.js", "Go", "PostgreSQL", "pgvector", "Google Gemini AI", "Python", "Docker"],
-    imagePath: "/rag-chatbot.png" , 
+    imagePath: "/rag-chatbot.webp" , 
     githubUrl: "https://github.com/Jordannst/contextual-rag-chat",
     year: "2025",
     category: "Full Stack"
@@ -33,7 +33,7 @@ export const projects: Project[] = [
   title: "Kassentix POS",
   description: "Cloud-based Point of Sale SaaS for Indonesian SMEs. Features AI analytics, real-time inventory sync, multi-outlet management & subscription tiers. Try FREE at kassentix.cloud!",
   techStack: ["Next.js 15", "TypeScript", "Tailwind CSS", "Express.js", "Prisma", "Socket.io"],
-  imagePath: "/kassentix.png",
+  imagePath: "/kassentix.webp",
   liveUrl: "https://kassentix.cloud",
   year: "2025",
   category: "SaaS Platform"
