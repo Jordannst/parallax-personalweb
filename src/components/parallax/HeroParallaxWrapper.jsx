@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function HeroParallaxWrapper({ children }) {
   const containerRef = useRef(null);
@@ -11,13 +11,11 @@ export default function HeroParallaxWrapper({ children }) {
   });
 
   // Transform values as user scrolls (0 = top, 1 = container exited)
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.5]);
-  const blur = useTransform(scrollYProgress, [0, 0.5], [0, 10]);
-  const borderRadius = useTransform(scrollYProgress, [0, 0.5], [0, 40]);
-  
-  // Create blur filter template
-  const blurFilter = useMotionTemplate`blur(${blur}px)`;
+  // Removed blur for better performance - blur is GPU intensive
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0.3]);
+  const borderRadius = useTransform(scrollYProgress, [0, 0.5], [0, 32]);
+  const y = useTransform(scrollYProgress, [0, 0.5], [0, -30]);
 
   return (
     <>
@@ -33,8 +31,8 @@ export default function HeroParallaxWrapper({ children }) {
         style={{
           scale,
           opacity,
-          filter: blurFilter,
           borderRadius,
+          y,
           position: 'fixed',
           top: 0,
           left: 0,

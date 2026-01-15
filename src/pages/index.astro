@@ -4,9 +4,10 @@ import Preloader from '../components/ui/Preloader.jsx';
 import Hero from '../components/sections/Hero.astro';
 import About from '../components/sections/About.astro';
 import ZoomSection from '../components/parallax/ZoomSection.jsx';
-import ProjectsGallery from '../components/sections/ProjectsGallery.astro';
-import TechStack from '../components/sections/TechStack.astro';
+import StackedProjectScroll from '../components/parallax/StackedProjectScroll.jsx';
+import TechStack from '../components/sections/TechStack.jsx';
 import Contact from '../components/sections/Contact.astro';
+import { projects } from '../data/projects';
 ---
 
 <BaseLayout title="Jordan Sutarto | Creative Developer">
@@ -29,17 +30,17 @@ import Contact from '../components/sections/Contact.astro';
     <ZoomSection client:load />
   </div>
   
-  <!-- Projects Section (z-30) - Dark, seamlessly continues from zoom -->
+  <!-- Projects Section (z-30) - Stacked Cards Layout -->
   <div class="relative z-30">
-    <ProjectsGallery />
+    <StackedProjectScroll client:load projects={projects} />
   </div>
   
-  <!-- TechStack Section (z-40) - Paper Light, arches over Projects -->
-  <div class="sticky top-0 z-40 -mt-20 md:-mt-32">
-    <TechStack />
+  <!-- TechStack Section (z-40) - Paper Light, shape-shifting animation -->
+  <div class="sticky top-0 z-40">
+    <TechStack client:visible />
   </div>
   
-  <!-- Contact Section (z-50) - The Grand Finale, closes over TechStack -->
+  <!-- Contact Section (z-50) - The Grand Finale -->
   <div class="relative z-50">
     <Contact />
   </div>

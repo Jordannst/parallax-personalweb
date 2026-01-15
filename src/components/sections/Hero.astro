@@ -1,7 +1,7 @@
 ---
 import HeroTitle from "../parallax/HeroTitle.jsx";
 import HeroParallaxWrapper from "../parallax/HeroParallaxWrapper.jsx";
-import Hero3DObject from "../parallax/Hero3DObject.jsx";
+import AnimatedGradientMesh from "../ui/AnimatedGradientMesh.jsx";
 
 interface Props {
   name?: string;
@@ -19,23 +19,13 @@ const {
 <HeroParallaxWrapper client:load>
   <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
     
-    <!-- Subtle Gradient Mesh Background - Adjusted for Deep Black -->
+    <!-- Animated Gradient Mesh Background (z-0) -->
     <div class="absolute inset-0 pointer-events-none z-0">
-      <!-- Top gradient - More subtle -->
-      <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neutral-800/20 rounded-full blur-[180px]"></div>
-      <!-- Bottom gradient -->
-      <div class="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-neutral-700/15 rounded-full blur-[150px]"></div>
-      <!-- Center glow - Very subtle -->
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-neutral-800/10 rounded-full blur-[120px]"></div>
-    </div>
-
-    <!-- 3D Object Layer (z-5) - Behind text, above background -->
-    <div class="absolute inset-0 z-5 flex items-center justify-center pointer-events-none opacity-70">
-      <Hero3DObject client:load />
+      <AnimatedGradientMesh client:load />
     </div>
 
     <!-- Vertical Lines Decoration - More subtle -->
-    <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.02] z-0">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden opacity-[0.03] z-[1]">
       <div class="absolute left-[10%] top-0 bottom-0 w-[1px] bg-white"></div>
       <div class="absolute left-[30%] top-0 bottom-0 w-[1px] bg-white"></div>
       <div class="absolute left-[50%] top-0 bottom-0 w-[1px] bg-white"></div>
