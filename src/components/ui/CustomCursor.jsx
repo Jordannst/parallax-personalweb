@@ -4,12 +4,21 @@ import { motion, useSpring } from "framer-motion";
 export default function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(true); // Default hidden to prevent flash
 
   // Smooth spring physics for cursor movement - optimized for performance
   const cursorX = useSpring(0, { stiffness: 300, damping: 25 });
   const cursorY = useSpring(0, { stiffness: 300, damping: 25 });
 
+  // Detect touch device on mount - prevents hydration mismatch
   useEffect(() => {
+    setIsTouchDevice(window.matchMedia("(hover: none)").matches);
+  }, []);
+
+  useEffect(() => {
+    // Skip if touch device
+    if (isTouchDevice) return;
+
     // Mouse move handler
     const handleMouseMove = (e) => {
       cursorX.set(e.clientX);
@@ -61,10 +70,10 @@ export default function CustomCursor() {
       document.removeEventListener("mouseover", handleMouseOver);
       document.removeEventListener("mouseout", handleMouseOut);
     };
-  }, [cursorX, cursorY]);
+  }, [cursorX, cursorY, isTouchDevice]);
 
   // Hide on touch devices
-  if (typeof window !== "undefined" && window.matchMedia("(hover: none)").matches) {
+  if (isTouchDevice) {
     return null;
   }
 

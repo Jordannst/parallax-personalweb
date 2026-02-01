@@ -142,6 +142,9 @@ export default function HorizontalProjectScroll({ projects = [] }) {
     ["0vw", `-${totalWidth - 100}vw`]
   );
 
+  // Progress bar width - moved from inside JSX to follow React hooks rules
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   // Dynamic height based on project count
   const sectionHeight = `${projects.length * 100}vh`;
 
@@ -180,9 +183,7 @@ export default function HorizontalProjectScroll({ projects = [] }) {
           >
             <motion.div 
               className="h-full bg-white/60 rounded-full"
-              style={{ 
-                width: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]) 
-              }}
+              style={{ width: progressWidth }}
             />
           </motion.div>
         </div>

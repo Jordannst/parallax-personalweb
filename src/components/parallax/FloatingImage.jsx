@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function FloatingImage({ 
@@ -23,8 +23,12 @@ export default function FloatingImage({
   // Slight scale variation during scroll
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
 
-  // Random rotation (passed as prop or default)
-  const randomRotation = rotation || (Math.random() * 6 - 3); // -3 to 3 degrees
+  // Random rotation - memoized to prevent recalculation on every render
+  // and avoid hydration mismatch issues
+  const randomRotation = useMemo(
+    () => rotation || (Math.random() * 6 - 3), // -3 to 3 degrees
+    [rotation]
+  );
 
   return (
     <motion.div
